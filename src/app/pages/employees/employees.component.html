@@ -1,0 +1,4 @@
+<ul>
+    <li *ngFor="let emp of employeeList; trackBy: trackById">{{emp.id}} - {{ emp.name }}</li>
+</ul>
+<button (click)="getMoreEmployee()">Get More Employee</button>
