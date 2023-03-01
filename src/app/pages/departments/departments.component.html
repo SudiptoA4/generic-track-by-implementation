@@ -1,1 +1,4 @@
-<p>departments works!</p>
+<ul>
+    <li *ngFor="let dept of departmentList; trackBy: trackById">{{dept.departmentId}} - {{ dept.name }}</li>
+</ul>
+<button (click)="getMoreDepartment()">Get More Departments</button>

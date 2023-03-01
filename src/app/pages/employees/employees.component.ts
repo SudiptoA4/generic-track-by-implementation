@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmployeeService } from 'src/app/service/employee.service';
-import { EmployeeM } from 'src/app/model/employee.model';
+import { DatabaseService } from 'src/app/service/database.service';
+import { DBModel, EmployeeViewModel } from 'src/app/model/all.model';
 
 @Component({
   selector: 'app-employees',
@@ -9,26 +9,30 @@ import { EmployeeM } from 'src/app/model/employee.model';
   imports: [CommonModule],
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
-  providers: [EmployeeService]
+  providers: [DatabaseService]
 })
 export class EmployeesComponent {
   limit = 10;
-  employeeList: EmployeeM[] = []
-  // employees$ = this.service.getEmployees(this.limit);
-  constructor(private service: EmployeeService) {
-    this.service.getEmployees(this.limit).subscribe((empList) => {
-      this.employeeList = empList
+  employeeList: EmployeeViewModel[] = []
+  
+  constructor(private service: DatabaseService) {
+    this.service.getData(this.limit).subscribe((empList: DBModel[]) => {
+      this.castToEmployeeViewList(empList);
     });
   }
 
   getMoreEmployee() {
     this.limit = this.limit + 10;
-    this.service.getEmployees(this.limit).subscribe((empList) => {
-      this.employeeList = empList
+    this.service.getData(this.limit).subscribe((empList: DBModel[]) => {
+      this.castToEmployeeViewList(empList);
     });
   }
 
+  castToEmployeeViewList(empList: DBModel[]) {
+    this.employeeList = empList.map((emp:DBModel) => ({employeeId: emp.id, name: emp.name}));
+  }
+
   trackById(item: any) {
-    return item.id;
+    return item.employeeId;
   }
 }
