@@ -14,22 +14,20 @@ import { DBModel, EmployeeViewModel } from 'src/app/model/all.model';
 export class EmployeesComponent {
   limit = 10;
   employeeList: EmployeeViewModel[] = []
-  
+
   constructor(private service: DatabaseService) {
-    this.service.getData(this.limit).subscribe((empList: DBModel[]) => {
-      this.castToEmployeeViewList(empList);
-    });
+    this.subscribeToData();
   }
 
   getMoreEmployee() {
     this.limit = this.limit + 10;
-    this.service.getData(this.limit).subscribe((empList: DBModel[]) => {
-      this.castToEmployeeViewList(empList);
-    });
+    this.subscribeToData();
   }
 
-  castToEmployeeViewList(empList: DBModel[]) {
-    this.employeeList = empList.map((emp:DBModel) => ({employeeId: emp.id, name: emp.name}));
+  subscribeToData() {
+    this.service.getData(this.limit).subscribe((empList: DBModel[]) => {
+      this.employeeList = empList.map((emp:DBModel) => ({employeeId: emp.id, name: emp.name}));
+    });
   }
 
   trackById(item: any) {

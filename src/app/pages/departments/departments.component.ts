@@ -16,19 +16,19 @@ export class DepartmentsComponent {
 
   constructor(private service: DatabaseService) {
     this.service.getData(this.limit).subscribe((depList: DBModel[]) => {
-      this.castToDepartmentViewList(depList);
+      this.subscribeToData();
     });
   }
 
   getMoreDepartment() {
     this.limit = this.limit + 10;
-    this.service.getData(this.limit).subscribe((deptList: DBModel[]) => {
-      this.castToDepartmentViewList(deptList);
-    });
+    this.subscribeToData();
   }
 
-  castToDepartmentViewList(deptList: DBModel[]) {
-    this.departmentList = deptList.map((emp:DBModel) => ({departmentId: emp.id, name: emp.name}));
+  subscribeToData() {
+    this.service.getData(this.limit).subscribe((deptList: DBModel[]) => {
+      this.departmentList = deptList.map((emp:DBModel) => ({departmentId: emp.id, name: emp.name}));
+    });
   }
 
   trackById(item: any) {
