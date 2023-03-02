@@ -8,15 +8,14 @@ import { NgForTrackByKeyDirective } from './directive/track-by-key.directive';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NgForTrackByKeyDirective
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [NgForTrackByKeyDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

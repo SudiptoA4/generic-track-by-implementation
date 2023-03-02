@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatabaseService } from 'src/app/service/database.service';
 import { DBModel, EmployeeViewModel } from 'src/app/model/all.model';
+import { DirectiveModule } from 'src/app/directive/track-by-key.directive';
 
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DirectiveModule],
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
   providers: [DatabaseService]

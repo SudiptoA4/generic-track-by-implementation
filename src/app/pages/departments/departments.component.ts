@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DBModel, DepartmentViewModel } from 'src/app/model/all.model';
 import { DatabaseService } from 'src/app/service/database.service';
+import { DirectiveModule } from 'src/app/directive/track-by-key.directive';
 
 @Component({
   selector: 'app-departments',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DirectiveModule],
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.scss']
 })
