@@ -31,7 +31,9 @@ export class EmployeesComponent {
     });
   }
 
-  trackById(item: any) {
-    return item.employeeId;
+  clearData() {
+    this.employeeList = [];
+    this.limit = 10;
+    this.subscribeToData();
   }
 }

@@ -16,9 +16,7 @@ export class DepartmentsComponent {
   departmentList: DepartmentViewModel[] = []
 
   constructor(private service: DatabaseService) {
-    this.service.getData(this.limit).subscribe((depList: DBModel[]) => {
-      this.subscribeToData();
-    });
+    this.subscribeToData();
   }
 
   getMoreDepartment() {
@@ -32,7 +30,9 @@ export class DepartmentsComponent {
     });
   }
 
-  trackById(item: any) {
-    return item.employeeId;
+  clearData() {
+    this.departmentList = [];
+    this.limit = 10;
+    this.subscribeToData();
   }
 }

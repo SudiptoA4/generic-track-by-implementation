@@ -1,4 +1,8 @@
+<div class="flex a-items-center">
+    <h4 class="mr-20">EMPLOYEE LIST</h4> 
+    <button class="mr-20" style="height:38px;" (click)="getMoreEmployee()">Get More Employee</button>
+    <button style="height:38px;" (click)="clearData()">Clear</button>
+</div>
 <ul>
     <li *ngFor="let emp of employeeList; trackByKey: 'employeeId'">{{emp.employeeId}} - {{ emp.name }}</li>
 </ul>
-<button (click)="getMoreEmployee()">Get More Employee</button>

@@ -1,4 +1,8 @@
+<div class="flex a-items-center">
+    <h4 class="mr-20">DEPARTMENT LIST</h4>
+    <button class="mr-20" style="height:38px;" (click)="getMoreDepartment()">Get More Departments</button>
+    <button style="height:38px;" (click)="clearData()">Clear</button>
+</div>
 <ul>
     <li *ngFor="let dept of departmentList; trackByKey: 'departmentId'">{{dept.departmentId}} - {{ dept.name }}</li>
 </ul>
-<button (click)="getMoreDepartment()">Get More Departments</button>
